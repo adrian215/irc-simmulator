@@ -1,9 +1,4 @@
 #include <iostream>
-#include "mock/ConnectionManagerMock.h"
-#include "tranmission/TransmissionStatus.h"
-#include "tranmission/ITransmissionInitializer.h"
-#include "tranmission/transmission-initializers/AsyncTransmissionInitializer.h"
-#include "tranmission/transmission-initializers/TransmissionInitializer.h"
 
 using namespace std;
 

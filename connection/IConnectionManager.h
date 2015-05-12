@@ -16,8 +16,8 @@ public:
     IConnectionManager(std::string i, int p) : ip(i), port(p) {};
     virtual void openConnection() = 0;
     virtual void closeConnection() = 0;
-    virtual void write(std::string message) =0;
-    virtual std::string read() =0;
+    virtual void writeMessage(std::string message) = 0;
+    virtual std::string readMessage() = 0;
 };
 
 
