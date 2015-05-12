@@ -19,7 +19,8 @@ private:
 public:
     Listener(ICommunicationService &communicationService, TransmissionStatus &status)
             : communicationService(communicationService), status(status) {}
-    void startListening();
+
+    virtual void start() override;
     virtual void wait() override;
 
 private:

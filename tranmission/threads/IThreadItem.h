@@ -9,6 +9,7 @@
 class IThreadItem {
 public:
     virtual void wait() = 0;
+    virtual void start() = 0;
 };
 
 

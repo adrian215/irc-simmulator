@@ -6,17 +6,17 @@
 #define IRC_TRANSMISSIONINITIALIZER_H
 
 
-static const bool TRANSMISSION_ACTIVE = true;
+#include "../ITransmissionInitializer.h"
+#include "../../connection/IConnectionManager.h"
+#include "../communication-service/CommunicationServiceStandard.h"
+#include "../threads/Listener.h"
+#include "../threads/CycleWriter.h"
+#include "../communication-service/CommunicationServiceFactory.h"
 
-#include "TransmissionStatus.h"
-#include "../connection/IConnectionManager.h"
-#include "threads/Listener.h"
-#include "threads/CycleWriter.h"
-#include "communication-service/CommunicationServiceStandard.h"
-#include "communication-service/CommunicationServiceFactory.h"
-
-class TransmissionInitializer {
+class TransmissionInitializer : public ITransmissionInitializer {
 private:
+    static const bool TRANSMISSION_ACTIVE = true;
+
     IConnectionManager &connectionManager;
     TransmissionStatus status;
     CommunicationServiceStandard communicationService;
@@ -29,9 +29,8 @@ public:
             listener(Listener(communicationService, status)),
             writer(CycleWriter(communicationService, status)){}
 
-    TransmissionStatus &startSimulation();
-    void waitForEnd();
-
+    virtual TransmissionStatus &startSimulation() override;
+    virtual void waitForEnd() override;
 };
 
 

@@ -12,10 +12,6 @@ void Listener::runListeningInNewThread() {
     }
 }
 
-void Listener::startListening() {
-    listenerThread = std::thread(&Listener::runListeningInNewThread, this);
-}
-
 void Listener::wait() {
     try {
         listenerThread.join();
@@ -23,4 +19,8 @@ void Listener::wait() {
     catch(std::exception e) {
         // watek nie dzialal wiec nie ma potrzeby jego przerywania
     }
+}
+
+void Listener::start() {
+    listenerThread = std::thread(&Listener::runListeningInNewThread, this);
 }

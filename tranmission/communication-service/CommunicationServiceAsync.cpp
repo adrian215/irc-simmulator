@@ -9,5 +9,5 @@ void CommunicationServiceAsync::write(std::string message) {
 }
 
 std::string CommunicationServiceAsync::read() {
-    return connectionManager.read();
+    return asyncConnectionManager.read();
 }

@@ -21,7 +21,7 @@ public:
     CycleWriter(ICommunicationService &communicationService, TransmissionStatus &status) :
             status(status),
             communicationService(communicationService) { }
-    void start();
+    virtual void start() override;
     virtual void wait() override;
 private:
     void runCycleWritingInNewThread(int delay);
