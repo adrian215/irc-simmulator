@@ -5,7 +5,12 @@
 #include "AsyncRewriter.h"
 
 void AsyncRewriter::wait() {
-    rewriteThread.join();
+    try {
+        rewriteThread.join();
+    }
+    catch (std::exception e){
+        // watek nie dzialal wiec nie ma potrzeby jego przerywania
+    }
 }
 
 void AsyncRewriter::runRewritingInNewThread() {
