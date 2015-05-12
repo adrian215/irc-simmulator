@@ -48,12 +48,12 @@ std::vector<Command> ConfigParser::parseCommands() {
             delay = -1;
 
 
-        Command *parsedCommand = new Command(
+        Command parsedCommand(
                 command,
                 response,
                 delay
         );
-        parsedCommands.push_back(*parsedCommand);
+        parsedCommands.push_back(parsedCommand);
     }
     return parsedCommands;
 }
