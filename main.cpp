@@ -12,7 +12,7 @@ int main() {
 //    TransmissionInitializer transmissionInitializer(connectionManagerMock);
     AsyncTransmissionInitializer asyncTransmissionInitializer(connectionManagerMock, connectionManagerMock);
     TransmissionInitializer initializer(connectionManagerMock);
-    ITransmissionInitializer &transmissionInitializer = initializer;
+    ITransmissionInitializer &transmissionInitializer = asyncTransmissionInitializer;
     TransmissionStatus &status = transmissionInitializer.startSimulation();
     transmissionInitializer.waitForEnd();
     cout << "Hello, World!" << endl;

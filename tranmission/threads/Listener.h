@@ -8,17 +8,15 @@
 
 #include <thread>
 #include "../TransmissionStatus.h"
-#include "IThreadItem.h"
+#include "ThreadItem.h"
 #include "../ICommunicationService.h"
 
-class Listener: public IThreadItem{
+class Listener: public ThreadItem {
 private:
-    TransmissionStatus &status;
-    ICommunicationService &communicationService;
     std::thread listenerThread;
 public:
     Listener(ICommunicationService &communicationService, TransmissionStatus &status)
-            : communicationService(communicationService), status(status) {}
+            : ThreadItem(status, communicationService){}
 
     virtual void start() override;
     virtual void wait() override;

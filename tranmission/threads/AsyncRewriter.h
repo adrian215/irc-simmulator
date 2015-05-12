@@ -7,19 +7,17 @@
 
 
 #include <thread>
-#include "IThreadItem.h"
+#include "ThreadItem.h"
 #include "../ICommunicationService.h"
 #include "../TransmissionStatus.h"
 
-class AsyncRewriter : public IThreadItem {
+class AsyncRewriter : public ThreadItem {
 private:
-    ICommunicationService &communicationService;
-    TransmissionStatus &status;
     std::thread rewriteThread;
 
 public:
-    AsyncRewriter(ICommunicationService &communicationService, TransmissionStatus &status) : communicationService(
-            communicationService), status(status) { }
+    AsyncRewriter(ICommunicationService &communicationService, TransmissionStatus &status) :
+            ThreadItem(status, communicationService){ }
 
     virtual void wait() override;
     virtual void start() override;
