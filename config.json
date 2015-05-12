@@ -1,0 +1,27 @@
+{
+  "ip": "192.168.1.1",
+  "communicationPort": 12,
+  "asynchronousCommandsPort": 13,
+  "commands": [
+    {
+      "response": "NICK hugo",
+      "delay": null
+    },
+    {
+      "response": "USER guest 0 * :Ronnie Reagan",
+      "delay": null
+    },
+    {
+      "command": "PRIVMSG (.)+ :(.)+",
+      "response": "PRIVMSG $1"
+    },
+    {
+      "command": "QUIT ([a­zA­Z0­9]+)",
+      "response": "QUIT :'jak milo ze napisales'"
+    },
+    {
+      "command": "NICK :([a­zA­Z0­9]+)",
+      "response": "PONG $1"
+    }
+  ]
+}
