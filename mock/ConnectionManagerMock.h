@@ -6,7 +6,19 @@
 #define IRC_CONNECTIONMANAGERMOCK_H
 
 
-class ConnectionManagerMock {
+#include "../connection/IConnectionManager.h"
+
+class ConnectionManagerMock: public IConnectionManager{
+public:
+    virtual void openConnection() override;
+
+    virtual void closeConnection() override;
+
+    virtual void write(std::string message) override;
+
+    virtual std::string read() override;
+
+    ConnectionManagerMock(std::string s, int p):IConnectionManager(s, p){}
 
 };
 

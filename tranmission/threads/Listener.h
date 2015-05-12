@@ -6,17 +6,24 @@
 #define IRC_LISTENER_H
 
 
-#include "../CommunicationService.h"
+#include <thread>
 #include "../TransmissionStatus.h"
+#include "IThreadItem.h"
+#include "../ICommunicationService.h"
 
-class Listener {
+class Listener: public IThreadItem{
 private:
     TransmissionStatus &status;
-    CommunicationService &communicationService;
+    ICommunicationService &communicationService;
+    std::thread listenerThread;
 public:
-    Listener(CommunicationService &communicationService, TransmissionStatus &status)
-            : communicationService(communicationService), status(status) { }
+    Listener(ICommunicationService &communicationService, TransmissionStatus &status)
+            : communicationService(communicationService), status(status) {}
     void startListening();
+    virtual void wait() override;
+
+private:
+    void runListeningInNewThread();
 };
 
 #endif //IRC_LISTENER_H

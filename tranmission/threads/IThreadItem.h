@@ -7,7 +7,8 @@
 
 
 class IThreadItem {
-
+public:
+    virtual void wait() = 0;
 };
 
 

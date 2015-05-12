@@ -6,14 +6,25 @@
 #define IRC_CYCLEWRITER_H
 
 
-#include "../CommunicationService.h"
+#include <thread>
+#include <vector>
 #include "../TransmissionStatus.h"
+#include "IThreadItem.h"
+#include "../ICommunicationService.h"
 
-class CycleWriter {
+class CycleWriter : public IThreadItem{
 private:
-    TransmissionStatus &transmissionStatus;
-    CommunicationService &communicationService;
-
+    TransmissionStatus &status;
+    ICommunicationService &communicationService;
+    std::vector<std::thread> writerThreads;
+public:
+    CycleWriter(ICommunicationService &communicationService, TransmissionStatus &status) :
+            status(status),
+            communicationService(communicationService) { }
+    void start();
+    virtual void wait() override;
+private:
+    void runCycleWritingInNewThread(int delay);
 };
 
 
