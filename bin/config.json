@@ -8,12 +8,14 @@
       "delay": null
     },
     {
+      "command": "PRIVMSG (.)+ :(.)+",
       "response": "USER guest 0 * :Ronnie Reagan",
-      "delay": null
+      "delay": 1000
     },
     {
-      "command": "PRIVMSG (.)+ :(.)+",
-      "response": "PRIVMSG $1"
+      "command": "QUIT ([a­zA­Z0­9]+)",
+      "response": "PRIVMSG $1",
+      "delay": 2000
     },
     {
       "command": "QUIT ([a­zA­Z0­9]+)",

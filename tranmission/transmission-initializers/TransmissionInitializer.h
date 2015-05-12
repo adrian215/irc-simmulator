@@ -12,25 +12,30 @@
 #include "../threads/Listener.h"
 #include "../threads/CycleWriter.h"
 #include "../communication-service/CommunicationServiceFactory.h"
+#include "../../config/AppConfig.h"
 
 class TransmissionInitializer : public ITransmissionInitializer {
 private:
     static const bool TRANSMISSION_ACTIVE = true;
 
     IConnectionManager &connectionManager;
+    AppConfig &config;
     TransmissionStatus status;
     CommunicationServiceStandard communicationService;
     Listener listener;
     CycleWriter writer;
 public:
-    TransmissionInitializer(IConnectionManager &connectionManager) :
+    TransmissionInitializer(IConnectionManager &connectionManager, AppConfig &config) :
             connectionManager(connectionManager),
             communicationService(CommunicationServiceFactory::getStandardCommunicationService(connectionManager)),
             listener(Listener(communicationService, status)),
-            writer(CycleWriter(communicationService, status)){}
+            writer(CycleWriter(communicationService, status, getCycleCommandsFromConfig())),
+            config(config) {}
 
     virtual TransmissionStatus &startSimulation() override;
     virtual void waitForEnd() override;
+private:
+    std::vector<Command> getCycleCommandsFromConfig();
 };
 
 
