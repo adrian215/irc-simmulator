@@ -7,9 +7,20 @@
 
 
 #include "IConnectionManager.h"
-#include <iostream>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <stdio.h>
 
 class ClientConnectionManager : public IConnectionManager {
+private:
+    int sock;
+    struct sockaddr_in server;
+    struct hostent *hp;
+    char buf[1024];
+
 public:
     ClientConnectionManager(const std::string &i, int p) : IConnectionManager(i, p) { }
 
@@ -17,9 +28,9 @@ public:
 
     virtual void closeConnection() override;
 
-    virtual void write(std::string message) override;
+    virtual void writeMessage(std::string message) override;
 
-    virtual std::string read() override;
+    virtual std::string readMessage() override;
 };
 
 
