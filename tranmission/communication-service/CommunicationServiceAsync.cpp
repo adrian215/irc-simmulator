@@ -5,9 +5,9 @@
 #include "CommunicationServiceAsync.h"
 
 void CommunicationServiceAsync::write(std::string message) {
-    connectionManager.write(message);
+    connectionManager.writeMessage(message);
 }
 
 std::string CommunicationServiceAsync::read() {
-    return asyncConnectionManager.read();
+    return asyncConnectionManager.readMessage();
 }

@@ -13,10 +13,10 @@ void ConnectionManagerMock::closeConnection() {
 
 }
 
-void ConnectionManagerMock::write(std::string message) {
+void ConnectionManagerMock::writeMessage(std::string message) {
     std::cout << "Connection manager mock: " << message << std::endl;
 }
 
-std::string ConnectionManagerMock::read() {
+std::string ConnectionManagerMock::readMessage() {
     return "aa";
 }

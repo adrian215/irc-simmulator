@@ -14,9 +14,9 @@ public:
 
     virtual void closeConnection() override;
 
-    virtual void write(std::string message) override;
+    virtual void writeMessage(std::string message) override;
 
-    virtual std::string read() override;
+    virtual std::string readMessage() override;
 
     ConnectionManagerMock(std::string s, int p):IConnectionManager(s, p){}
 

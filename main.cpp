@@ -1,4 +1,8 @@
 #include <iostream>
+#include "mock/ConnectionManagerMock.h"
+#include "tranmission/transmission-initializers/AsyncTransmissionInitializer.h"
+#include "tranmission/transmission-initializers/TransmissionInitializer.h"
+#include "config/AppConfig.h"
 
 using namespace std;
 
@@ -7,7 +11,7 @@ int main() {
 //    TransmissionInitializer transmissionInitializer(connectionManagerMock);
     AsyncTransmissionInitializer asyncTransmissionInitializer(connectionManagerMock, connectionManagerMock);
     TransmissionInitializer initializer(connectionManagerMock);
-    ITransmissionInitializer &transmissionInitializer = asyncTransmissionInitializer;
+    ITransmissionInitializer &transmissionInitializer = initializer;
     TransmissionStatus &status = transmissionInitializer.startSimulation();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     status.setTransmissionActive(false);

@@ -4,9 +4,9 @@
 #include "CommunicationServiceStandard.h"
 
 void CommunicationServiceStandard::write(std::string message) {
-    connectionManager.write(message);
+    connectionManager.writeMessage(message);
 }
 
 std::string CommunicationServiceStandard::read() {
-    return connectionManager.read();
+    return connectionManager.readMessage();
 }
