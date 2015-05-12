@@ -22,6 +22,26 @@ private:
 public:
     AppConfig(const char *configPath = "config.json");
     rapidjson::Document* ReadConfig();
+
+    const char *getConfigPath() const {
+        return configPath;
+    }
+
+    const std::string &getIp() const {
+        return ip;
+    }
+
+    int getCommunicationPort() const {
+        return communicationPort;
+    }
+
+    int getAsynchronousCommandsPort() const {
+        return asynchronousCommandsPort;
+    }
+
+    const std::vector<Command> &getCommands() const {
+        return commands;
+    }
 };
 
 
