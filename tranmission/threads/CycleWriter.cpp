@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include "CycleWriter.h"
-#include "../../config/Command.h"
 
 void CycleWriter::wait() {
     for(std::thread& thread : writerThreads) {
