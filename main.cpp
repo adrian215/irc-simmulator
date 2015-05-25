@@ -4,21 +4,13 @@
 #include "tranmission/transmission-initializers/AsyncTransmissionInitializer.h"
 #include "tranmission/transmission-initializers/TransmissionInitializer.h"
 #include <stdio.h>
+#include "logger/Logger.h"
 
 using namespace std;
 
 int main() {
-    ConnectionManagerMock connectionManagerMock("aa", 2);
-    AppConfig config;
-    config.ReadConfig();
-//    TransmissionInitializer transmissionInitializer(connectionManagerMock);
-    AsyncTransmissionInitializer asyncTransmissionInitializer(connectionManagerMock, connectionManagerMock);
-    TransmissionInitializer initializer(connectionManagerMock, config);
-    ITransmissionInitializer &transmissionInitializer = initializer;
-    TransmissionStatus &status = transmissionInitializer.startSimulation();
-//    std::this_thread::sleep_for(std::chrono::seconds(1));
-//    status.setTransmissionActive(false);
-    transmissionInitializer.waitForEnd();
-    cout << "Hello, World!" << endl;
+    cout << "hello" << endl;
+    Logger logger(true);
+    logger.putReceivedLog("aaaa");
     return 0;
 }
