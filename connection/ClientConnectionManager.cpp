@@ -41,8 +41,10 @@ void ClientConnectionManager::writeMessage(std::string message)
 {
     char messageChar[1024];
     strcpy(messageChar, message.c_str());
+    mtx.lock();
     if (write( sock, messageChar, sizeof messageChar) == -1)
         perror("writing on stream socket");
+    mtx.unlock();
 }
 
 std::string ClientConnectionManager::readMessage()

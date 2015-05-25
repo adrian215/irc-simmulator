@@ -13,6 +13,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <stdio.h>
+#include <mutex>
 
 class ClientConnectionManager : public IConnectionManager {
 private:
@@ -20,6 +21,7 @@ private:
     struct sockaddr_in server;
     struct hostent *hp;
     char buf[1024];
+    std::mutex mtx;
 
 public:
     ClientConnectionManager(const std::string &i, int p) : IConnectionManager(i, p) { }

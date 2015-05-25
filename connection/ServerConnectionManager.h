@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <mutex>
 
 class ServerConnectionManager : public IConnectionManager{
 private:
@@ -25,6 +26,7 @@ private:
     int msgsock;
     char buf[1024];
     int rval;
+    std::mutex mtx;
 
 public:
     ~ServerConnectionManager() {closeConnection();}
