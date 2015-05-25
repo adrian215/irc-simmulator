@@ -7,7 +7,7 @@
 TransmissionStatus& TransmissionInitializer::startSimulation() {
     connectionManager.openConnection();
     status.setTransmissionActive(TRANSMISSION_ACTIVE);
-//    listener.start();
+    listener.start();
     writer.start();
     return status;
 }
