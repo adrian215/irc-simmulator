@@ -36,6 +36,8 @@ config/ConfigParser.cpp
 config/ConfigParser.h
 config/Command.cpp
 config/Command.h
+logger/Logger.h
+logger/Logger.cpp
 connection/ConnectionProvider.cpp
 connection/ConnectionProvider.h
 connection/ConnectionType.h
