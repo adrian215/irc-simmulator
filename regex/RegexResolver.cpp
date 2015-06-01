@@ -9,7 +9,7 @@ std::string RegexResolver::identify(){
 //    CommandDispatcher commandDispatcher;
     std::string message;
 //    message = commandDispatcher.getMessage();
-    message = "QUIT lala";
+    message = "QUIT lala : lalb";
     std::vector<Command>commands= appConfig.getCommands();
     Command* commandExample;
     std::smatch result;
@@ -21,14 +21,27 @@ std::string RegexResolver::identify(){
             break;
     }
     std::string response = commandExample->getResponse();
-    std::regex responsePattern ("\\$(.+)");
-    std::smatch result2;
-    std::regex_search(commandExample->getResponse(), result2, responsePattern);
+    std::string response2 = response;
+    std::regex responsePattern ("\\$(\\d)");
 
-    for(int i=1; i<(int)result2.size();i++) {
-        response = std::regex_replace(response, responsePattern, result[i].str());
-    }
-    std::cout<<response;
+    const std::sregex_token_iterator end;
+    for (std::sregex_token_iterator i(response.cbegin(), response.cend(), responsePattern);
+         i != end;
+         ++i)
+    {
+        std::regex token("\\" + i->str());
+        int num = getIntFromStringToken(i);
+        response = std::regex_replace(response, token, result[num].str());
+    };
+
+       std::cout<<response;
 
     return response;
+}
+
+int RegexResolver::getIntFromStringToken(const std::sregex_token_iterator &i) const {
+    std::string tmp = i->str();
+    const char c = tmp[1];
+    int num = atoi(&c);
+    return num;
 }

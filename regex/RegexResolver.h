@@ -23,6 +23,7 @@ public:
 
     std::string identify();
 
+    int getIntFromStringToken(const std::sregex_token_iterator &i) const;
 };
 
 
