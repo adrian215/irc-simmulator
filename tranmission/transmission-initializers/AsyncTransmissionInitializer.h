@@ -23,10 +23,10 @@ private:
 
 
 public:
-    AsyncTransmissionInitializer(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager)
+    AsyncTransmissionInitializer(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager, Logger &logger)
             : connectionManager(connectionManager),
               asyncConnectionManager(asyncConnectionManager),
-            communicationService(CommunicationServiceFactory::getAsyncCommunicationService(connectionManager, asyncConnectionManager)),
+            communicationService(CommunicationServiceFactory::getAsyncCommunicationService(connectionManager, asyncConnectionManager, logger)),
             rewriter(AsyncRewriter(communicationService, status)){ }
 
     virtual TransmissionStatus &startSimulation() override;

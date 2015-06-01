@@ -8,21 +8,14 @@
 #include <string>
 #include <regex>
 #include <iostream>
-#include "CommandDispatcher.h"
+#include "../config/AppConfig.h"
 
 class RegexResolver {
-
-    std::string message;
-    std::string response;
     AppConfig appConfig;
-    CommandDispatcher commandDispatcher;
-
 
 public:
-    RegexResolver() {appConfig.ReadConfig();};
-
-    std::string identify();
-
+    RegexResolver(AppConfig ac) : appConfig(ac) {};
+    std::string identify(std::string message);
 };
 
 

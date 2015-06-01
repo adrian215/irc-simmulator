@@ -4,9 +4,12 @@
 #include "CommunicationServiceStandard.h"
 
 void CommunicationServiceStandard::write(std::string message) {
+    logger.putSentLog(message);
     connectionManager.writeMessage(message);
 }
 
 std::string CommunicationServiceStandard::read() {
-    return connectionManager.readMessage();
+    std::string received = connectionManager.readMessage();
+    logger.putReceivedLog(received);
+    return received;
 }

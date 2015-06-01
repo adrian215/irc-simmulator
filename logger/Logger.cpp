@@ -7,12 +7,12 @@
 
 Logger::Logger(bool isSerwer, const char *loggerPath) {
     if(isSerwer) {
-        receiver = "client";
-        sender = "server";
+        receiver = "server received from client";
+        sender = "server sent";
     }
     else {
-        receiver = "server";
-        sender = "client";
+        receiver = "client received from server";
+        sender = "client sent";
     }
     loggerStream.open(loggerPath);
 }

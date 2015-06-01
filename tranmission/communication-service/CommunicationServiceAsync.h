@@ -8,15 +8,18 @@
 
 #include "../ICommunicationService.h"
 #include "../../connection/IConnectionManager.h"
+#include "../../logger/Logger.h"
 
 class CommunicationServiceAsync : public ICommunicationService{
 private:
     IConnectionManager &connectionManager;
     IConnectionManager &asyncConnectionManager;
+    Logger &logger;
 
 public:
-    CommunicationServiceAsync(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager)
-            : connectionManager(connectionManager), asyncConnectionManager(asyncConnectionManager) { }
+    CommunicationServiceAsync(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager,
+                                  Logger &logger)
+            : connectionManager(connectionManager), asyncConnectionManager(asyncConnectionManager), logger(logger) { }
 
     virtual void write(std::string message) override;
     virtual std::string read() override;

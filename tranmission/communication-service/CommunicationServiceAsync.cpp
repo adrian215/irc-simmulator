@@ -5,6 +5,7 @@
 #include "CommunicationServiceAsync.h"
 
 void CommunicationServiceAsync::write(std::string message) {
+    logger.putSentLog(message);
     connectionManager.writeMessage(message);
 }
 

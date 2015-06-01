@@ -4,11 +4,12 @@
 
 #include "CommunicationServiceFactory.h"
 
-CommunicationServiceStandard CommunicationServiceFactory::getStandardCommunicationService(IConnectionManager &connectionManager) {
-    return CommunicationServiceStandard(connectionManager);
+CommunicationServiceStandard CommunicationServiceFactory::getStandardCommunicationService(IConnectionManager &connectionManager,
+                                                            Logger &logger) {
+    return CommunicationServiceStandard(connectionManager, logger);
 }
 
 CommunicationServiceAsync CommunicationServiceFactory::getAsyncCommunicationService(
-        IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager) {
-    return CommunicationServiceAsync(connectionManager, asyncConnectionManager);
+        IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager, Logger &logger) {
+    return CommunicationServiceAsync(connectionManager, asyncConnectionManager, logger);
 }
