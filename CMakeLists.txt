@@ -36,6 +36,8 @@ config/ConfigParser.cpp
 config/ConfigParser.h
 config/Command.cpp
 config/Command.h
+logger/Logger.h
+logger/Logger.cpp
 connection/ConnectionProvider.cpp
 connection/ConnectionProvider.h
 connection/ConnectionType.h
@@ -44,4 +46,4 @@ connection/IConnectionManager.h
 connection/ClientConnectionManager.cpp
 connection/ClientConnectionManager.h
 connection/ServerConnectionManager.cpp
-connection/ServerConnectionManager.h regex/CommandDispatcher.cpp regex/CommandDispatcher.h regex/RegexResolver.cpp regex/RegexResolver.h)
+connection/ServerConnectionManager.h regex/RegexResolver.cpp regex/RegexResolver.h regex/CommandNotFoundException.h tranmission/TransmissionService.cpp tranmission/TransmissionService.h)

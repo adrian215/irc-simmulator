@@ -9,13 +9,16 @@
 #include <string>
 #include "../ICommunicationService.h"
 #include "../../connection/IConnectionManager.h"
+#include "../../logger/Logger.h"
 
 class CommunicationServiceStandard : public ICommunicationService {
 private:
     IConnectionManager &connectionManager;
+    Logger &logger;
 public:
 
-    CommunicationServiceStandard(IConnectionManager &connectionManager) : connectionManager(connectionManager) { }
+    CommunicationServiceStandard(IConnectionManager &connectionManager, Logger &logger)
+            : connectionManager(connectionManager), logger(logger) { }
     virtual void write(std::string string) override;
     virtual std::string read() override;
 };

@@ -13,6 +13,7 @@
 #include "../threads/CycleWriter.h"
 #include "../communication-service/CommunicationServiceFactory.h"
 #include "../../config/AppConfig.h"
+#include "../../regex/RegexResolver.h"
 
 class TransmissionInitializer : public ITransmissionInitializer {
 private:
@@ -25,10 +26,11 @@ private:
     Listener listener;
     CycleWriter writer;
 public:
-    TransmissionInitializer(IConnectionManager &connectionManager, AppConfig &config) :
+    TransmissionInitializer(IConnectionManager &connectionManager, AppConfig &config, RegexResolver &regexResolver,
+                            Logger &logger) :
             connectionManager(connectionManager),
-            communicationService(CommunicationServiceFactory::getStandardCommunicationService(connectionManager)),
-            listener(Listener(communicationService, status)),
+            communicationService(CommunicationServiceFactory::getStandardCommunicationService(connectionManager, logger)),
+            listener(Listener(communicationService, status, regexResolver)),
             writer(CycleWriter(communicationService, status, getCycleCommandsFromConfig())),
             config(config) {}
 

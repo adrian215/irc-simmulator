@@ -11,18 +11,12 @@
 #include "CommandDispatcher.h"
 
 class RegexResolver {
-
-    std::string message;
-    std::string response;
     AppConfig appConfig;
-    CommandDispatcher commandDispatcher;
-
 
 public:
-    RegexResolver() {appConfig.ReadConfig();};
-
-    std::string identify();
-
+    RegexResolver(AppConfig ac) : appConfig(ac) {};
+    std::string identify(std::string message);
+private:
     int getIntFromStringToken(const std::sregex_token_iterator &i) const;
 };
 

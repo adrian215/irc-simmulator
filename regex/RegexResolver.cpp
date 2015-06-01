@@ -3,23 +3,25 @@
 //
 
 #include "RegexResolver.h"
+#include "CommandNotFoundException.h"
 
-std::string RegexResolver::identify(){
+std::string RegexResolver::identify(std::string message){
 
-//    CommandDispatcher commandDispatcher;
-    std::string message;
-//    message = commandDispatcher.getMessage();
-    message = "QUIT lala : lalb";
     std::vector<Command>commands= appConfig.getCommands();
     Command* commandExample;
     std::smatch result;
+    bool isFound = false;
     for(int i=0; i<(int)commands.size(); i++) {
         commandExample = &commands[i];
         std::string commandPatternString = commandExample->getCommand();
         std::regex commandPattern(commandPatternString);
-        if (std::regex_search(message, result, commandPattern))
+        if (std::regex_search(message, result, commandPattern)) {
+            isFound = true;
             break;
+        }
     }
+    if(!isFound)
+        throw CommandNotFoundException();
     std::string response = commandExample->getResponse();
     std::string response2 = response;
     std::regex responsePattern ("\\$(\\d)");
@@ -33,8 +35,6 @@ std::string RegexResolver::identify(){
         int num = getIntFromStringToken(i);
         response = std::regex_replace(response, token, result[num].str());
     };
-
-       std::cout<<response;
 
     return response;
 }

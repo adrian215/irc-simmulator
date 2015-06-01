@@ -8,12 +8,15 @@
 
 #include "CommunicationServiceStandard.h"
 #include "CommunicationServiceAsync.h"
+#include "../../logger/Logger.h"
 
 class CommunicationServiceFactory {
 public:
-    static CommunicationServiceStandard getStandardCommunicationService(IConnectionManager &connectionManager);
+    static CommunicationServiceStandard getStandardCommunicationService(IConnectionManager &connectionManager,
+                                                                        Logger &logger);
     static CommunicationServiceAsync getAsyncCommunicationService(IConnectionManager &connectionManager,
-                                                                  IConnectionManager &asyncConnectionManager);
+                                                                  IConnectionManager &asyncConnectionManager,
+                                                                    Logger &logger);
 };
 
 

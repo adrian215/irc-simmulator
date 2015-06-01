@@ -21,7 +21,7 @@ void CycleWriter::runCycleWritingInNewThread(std::string command, int delay) {
 void CycleWriter::start() {
     for (Command &currentCommand : cycleCommands) {
         writerThreads.push_back(std::thread(&CycleWriter::runCycleWritingInNewThread, this,
-                                            currentCommand.getCommand(), currentCommand.getDelay()));
+                                            currentCommand.getResponse(), currentCommand.getDelay()));
     }
 
 }
