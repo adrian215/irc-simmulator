@@ -4,26 +4,26 @@
   "asynchronousCommandsPort": 13,
   "commands": [
     {
-      "response": "NICK hugo",
-      "delay": null
-    },
-    {
-      "command": "PRIVMSG (.)+ :(.)+",
+      "command": "PRIVMSG (.+) :(.+)",
       "response": "USER guest 0 * :Ronnie Reagan",
       "delay": 1000
     },
     {
-      "command": "QUIT ([a­zA­Z0­9]+)",
+      "command": "QUIT (.+)",
       "response": "PRIVMSG $1",
       "delay": 2000
     },
     {
-      "command": "QUIT ([a­zA­Z0­9]+)",
+      "command": "QUIT (.+)",
       "response": "QUIT :'jak milo ze napisales'"
     },
     {
-      "command": "NICK :([a­zA­Z0­9]+)",
+      "command": "NICK :(.+)",
       "response": "PONG $1"
+    },
+    {
+      "response": "NICK hugo",
+      "delay": null
     }
   ]
 }
