@@ -44,4 +44,4 @@ connection/IConnectionManager.h
 connection/ClientConnectionManager.cpp
 connection/ClientConnectionManager.h
 connection/ServerConnectionManager.cpp
-connection/ServerConnectionManager.h)
+connection/ServerConnectionManager.h regex/CommandDispatcher.cpp regex/CommandDispatcher.h regex/RegexResolver.cpp regex/RegexResolver.h)
