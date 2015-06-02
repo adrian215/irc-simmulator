@@ -28,5 +28,6 @@ int main(int argc, char* argv[]) {
     TransmissionService service(*connectionManagerSync, *connectionManagerAsync, *config, regexResolver, logger);
     service.startSimulation();
     service.waitForEnd();
+    delete(config);
     return 0;
 }
