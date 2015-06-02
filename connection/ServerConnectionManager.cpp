@@ -5,7 +5,7 @@
 #include <string.h>
 #include <iostream>
 #include "ServerConnectionManager.h"
-#include "NoReadersException.h"
+#include "NoReaderException.h"
 
 void ServerConnectionManager::openConnection()
 {
@@ -67,13 +67,14 @@ std::string ServerConnectionManager::readMessage()
     {
         memset(buf, 0, sizeof buf);
         if ((rval = read(msgsock,buf, 1024)) == -1)
-                std::cout<<"Klient jest odlaczony";
-//                perror("reading stream message");
+                perror("reading stream message");
         else if (rval == 0)
         {
-            throw NoReadersException();
+            throw NoReaderException();
         }
         else
+        {
             return buf;
+        }
     }
 }
