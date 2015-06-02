@@ -5,6 +5,7 @@
 #include <string.h>
 #include <iostream>
 #include "ServerConnectionManager.h"
+#include "NoReadersException.h"
 
 void ServerConnectionManager::openConnection()
 {
@@ -70,8 +71,7 @@ std::string ServerConnectionManager::readMessage()
 //                perror("reading stream message");
         else if (rval == 0)
         {
-            msgsock = accept(sock,(struct sockaddr *) 0,(socklen_t *) 0);
-            return "";
+            throw NoReadersException();
         }
         else
             return buf;

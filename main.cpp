@@ -30,6 +30,10 @@ int main(int argc, char* argv[]) {
     TransmissionService service(*connectionManagerSync, *connectionManagerAsync, *config, regexResolver, logger);
     service.startSimulation();
     service.waitForEnd();
+    connectionManagerSync->closeConnection();
+    connectionManagerAsync->closeConnection();
+    delete(connectionManagerSync);
+    delete(connectionManagerAsync);
     delete(config);
     return 0;
 }

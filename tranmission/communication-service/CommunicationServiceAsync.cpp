@@ -3,6 +3,7 @@
 //
 
 #include "CommunicationServiceAsync.h"
+#include "../../connection/NoReadersException.h"
 
 void CommunicationServiceAsync::write(std::string message) {
     logger.putSentLog(message);
@@ -10,5 +11,11 @@ void CommunicationServiceAsync::write(std::string message) {
 }
 
 std::string CommunicationServiceAsync::read() {
-    return asyncConnectionManager.readMessage();
+    std::string message;
+    try {
+        message = asyncConnectionManager.readMessage();
+    } catch (NoReadersException e) {
+        stopTransmission();
+    }
+    return message;
 }
