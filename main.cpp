@@ -7,27 +7,26 @@
 
 using namespace std;
 
-int main() {
-    AppConfig config;
-    config.ReadConfig();
+int main(int argc, char* argv[]) {
+    std::cout << argc << std::endl;
+    AppConfig *config;
+    if (argc == 2) {
+        std::cout << argv[1] << std::endl;
+        const char *path = argv[1];
+        config = new AppConfig(path);
+    } else {
+        config = new AppConfig();
+    }
+
+    config->ReadConfig();
     ConnectionProvider connectionProvider;
-    IConnectionManager* connectionManagerSync = connectionProvider.connectionPrepare(config.getIp(),config.getCommunicationPort(), ConnectionType(SERVER));
-    IConnectionManager* connectionManagerAsync = connectionProvider.connectionPrepare(config.getIp(),config.getAsynchronousCommandsPort(), ConnectionType(SERVER));
-    RegexResolver regexResolver(config);
+    IConnectionManager* connectionManagerSync = connectionProvider.connectionPrepare(config->getIp(),config->getCommunicationPort(), ConnectionType(SERVER));
+    IConnectionManager* connectionManagerAsync = connectionProvider.connectionPrepare(config->getIp(),config->getAsynchronousCommandsPort(), ConnectionType(SERVER));
+    RegexResolver regexResolver(*config);
     Logger logger(false, "log.txt");
 
-    TransmissionService service(*connectionManagerSync, *connectionManagerAsync, config, regexResolver, logger);
+    TransmissionService service(*connectionManagerSync, *connectionManagerAsync, *config, regexResolver, logger);
     service.startSimulation();
     service.waitForEnd();
-
-//    TransmissionInitializer transmissionInitializer(connectionManagerMock);
-//    AsyncTransmissionInitializer asyncTransmissionInitializer(config, connectionManagerMock);
-//    TransmissionInitializer initializer(*connectionManagerSync, config, regexResolver);
-//    ITransmissionInitializer &transmissionInitializer = initializer;
-//    TransmissionStatus &status = transmissionInitializer.startSimulation();
-//    std::this_thread::sleep_for(std::chrono::seconds(1));
-//    status.setTransmissionActive(false);
-//    transmissionInitializer.waitForEnd();
-    cout << "Hello, World!" << endl;
     return 0;
 }
