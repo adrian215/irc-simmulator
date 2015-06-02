@@ -5,7 +5,7 @@
 #include <string.h>
 #include <iostream>
 #include "ServerConnectionManager.h"
-#include "NoReaderException.h"
+#include "NoReadersException.h"
 
 void ServerConnectionManager::openConnection()
 {
@@ -70,7 +70,7 @@ std::string ServerConnectionManager::readMessage()
                 perror("reading stream message");
         else if (rval == 0)
         {
-            throw NoReaderException();
+            throw NoReadersException();
         }
         else
         {

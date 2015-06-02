@@ -10,8 +10,8 @@ void TransmissionService::startSimulation() {
 }
 
 void TransmissionService::waitForEnd() {
-    if(standardTransmissionStatus != nullptr)
+    if (standardTransmissionStatus != nullptr)
         standardTransmission.waitForEnd();
-    if(asyncTransmissionStatus != nullptr)
+    if (asyncTransmissionStatus != nullptr)
         asyncTransmission.waitForEnd();
 }
