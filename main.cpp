@@ -5,10 +5,12 @@
 #include "connection/ConnectionProvider.h"
 #include "tranmission/TransmissionService.h"
 
+static const bool IS_NOT_ADMIN = false;
+static const bool IS_ADMIN = true;
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    std::cout << argc << std::endl;
     AppConfig *config;
     if (argc == 2) {
         std::cout << argv[1] << std::endl;
@@ -23,7 +25,7 @@ int main(int argc, char* argv[]) {
     IConnectionManager* connectionManagerSync = connectionProvider.connectionPrepare(config->getIp(),config->getCommunicationPort(), ConnectionType(SERVER));
     IConnectionManager* connectionManagerAsync = connectionProvider.connectionPrepare(config->getIp(),config->getAsynchronousCommandsPort(), ConnectionType(SERVER));
     RegexResolver regexResolver(*config);
-    Logger logger(false, "log.txt");
+    Logger logger(IS_ADMIN, "log-server.txt");
 
     TransmissionService service(*connectionManagerSync, *connectionManagerAsync, *config, regexResolver, logger);
     service.startSimulation();

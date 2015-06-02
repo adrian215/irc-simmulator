@@ -23,7 +23,6 @@ std::string RegexResolver::identify(std::string message){
     if(!isFound)
         throw CommandNotFoundException();
     std::string response = commandExample->getResponse();
-    std::string response2 = response;
     std::regex responsePattern ("\\$(\\d)");
 
     const std::sregex_token_iterator end;
