@@ -17,8 +17,9 @@ private:
     Logger &logger;
 public:
 
-    CommunicationServiceStandard(IConnectionManager &connectionManager, Logger &logger)
-            : connectionManager(connectionManager), logger(logger) { }
+    CommunicationServiceStandard(IConnectionManager &connectionManager, Logger &logger,
+            TransmissionStatus &status)
+            : connectionManager(connectionManager), logger(logger), ICommunicationService(status) { }
     virtual void write(std::string string) override;
     virtual std::string read() override;
 };

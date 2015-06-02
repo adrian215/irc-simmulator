@@ -26,7 +26,7 @@ public:
     AsyncTransmissionInitializer(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager, Logger &logger)
             : connectionManager(connectionManager),
               asyncConnectionManager(asyncConnectionManager),
-            communicationService(CommunicationServiceFactory::getAsyncCommunicationService(connectionManager, asyncConnectionManager, logger)),
+            communicationService(CommunicationServiceFactory::getAsyncCommunicationService(connectionManager, asyncConnectionManager, logger, status)),
             rewriter(AsyncRewriter(communicationService, status)){ }
 
     virtual TransmissionStatus &startSimulation() override;

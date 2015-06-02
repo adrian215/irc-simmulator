@@ -13,10 +13,10 @@
 class CommunicationServiceFactory {
 public:
     static CommunicationServiceStandard getStandardCommunicationService(IConnectionManager &connectionManager,
-                                                                        Logger &logger);
+                                                                        Logger &logger, TransmissionStatus &status);
     static CommunicationServiceAsync getAsyncCommunicationService(IConnectionManager &connectionManager,
                                                                   IConnectionManager &asyncConnectionManager,
-                                                                    Logger &logger);
+                                                                    Logger &logger, TransmissionStatus &status);
 };
 
 

@@ -1,11 +1,12 @@
 {
-  "ip": "192.168.0.15",
+  "ip": "127.0.0.1",
   "communicationPort": 9000,
   "asynchronousCommandsPort": 9001,
   "commands": [
     {
       "command": "PRIVMSG (.+) :(.+)",
-      "response": "USER $1 0 * :$2"
+      "response": "USER $1 0 * :$2",
+      "delay" : 2000
     },
     {
       "command": "QUIT (.+)",

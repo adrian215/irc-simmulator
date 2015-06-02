@@ -18,8 +18,8 @@ private:
 
 public:
     CommunicationServiceAsync(IConnectionManager &connectionManager, IConnectionManager &asyncConnectionManager,
-                                  Logger &logger)
-            : connectionManager(connectionManager), asyncConnectionManager(asyncConnectionManager), logger(logger) { }
+                                  Logger &logger, TransmissionStatus &status)
+            : connectionManager(connectionManager), asyncConnectionManager(asyncConnectionManager), logger(logger), ICommunicationService(status)  { }
 
     virtual void write(std::string message) override;
     virtual std::string read() override;

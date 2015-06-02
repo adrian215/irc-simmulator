@@ -29,7 +29,7 @@ public:
     TransmissionInitializer(IConnectionManager &connectionManager, AppConfig &config, RegexResolver &regexResolver,
                             Logger &logger) :
             connectionManager(connectionManager),
-            communicationService(CommunicationServiceFactory::getStandardCommunicationService(connectionManager, logger)),
+            communicationService(CommunicationServiceFactory::getStandardCommunicationService(connectionManager, logger, status)),
             listener(Listener(communicationService, status, regexResolver)),
             writer(CycleWriter(communicationService, status, getCycleCommandsFromConfig())),
             config(config) {}

@@ -42,7 +42,7 @@ void ClientConnectionManager::writeMessage(std::string message)
     char messageChar[1024];
     strcpy(messageChar, message.c_str());
     mtx.lock();
-    if (write( sock, messageChar, sizeof messageChar) == -1)
+    if (send( sock, messageChar, sizeof messageChar, MSG_NOSIGNAL) == -1)
         perror("writing on stream socket");
     mtx.unlock();
 }

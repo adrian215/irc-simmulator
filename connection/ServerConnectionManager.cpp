@@ -48,8 +48,12 @@ void ServerConnectionManager::writeMessage(std::string message)
     char messageChar[1024];
     strcpy(messageChar, message.c_str());
     mtx.lock();
-    if(write(msgsock, messageChar, sizeof messageChar) == -1)
-        std::cout<<"Klient jest odlaczony";
+    try {
+        if (send(msgsock, messageChar, sizeof messageChar, MSG_NOSIGNAL) == -1)
+            std::cout << "Klient jest odlaczony";
+    } catch (std::exception e) {
+        //nie wysylaj
+    }
     mtx.unlock();
 
 }
@@ -62,7 +66,8 @@ std::string ServerConnectionManager::readMessage()
     {
         memset(buf, 0, sizeof buf);
         if ((rval = read(msgsock,buf, 1024)) == -1)
-                perror("reading stream message");
+                std::cout<<"Klient jest odlaczony";
+//                perror("reading stream message");
         else if (rval == 0)
         {
             msgsock = accept(sock,(struct sockaddr *) 0,(socklen_t *) 0);
