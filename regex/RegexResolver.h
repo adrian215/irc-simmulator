@@ -8,7 +8,7 @@
 #include <string>
 #include <regex>
 #include <iostream>
-#include "CommandDispatcher.h"
+#include "../config/AppConfig.h"
 
 class RegexResolver {
     AppConfig appConfig;

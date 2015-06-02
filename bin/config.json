@@ -5,8 +5,7 @@
   "commands": [
     {
       "command": "PRIVMSG (.+) :(.+)",
-      "response": "USER guest 0 * :Ronnie Reagan",
-      "delay": 10000
+      "response": "USER $1 0 * :$2"
     },
     {
       "command": "QUIT (.+)",

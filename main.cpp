@@ -11,8 +11,8 @@ int main() {
     AppConfig config;
     config.ReadConfig();
     ConnectionProvider connectionProvider;
-    IConnectionManager* connectionManagerSync = connectionProvider.connectionPrepare(config.getIp(),config.getCommunicationPort(), ConnectionType(CLIENT));
-    IConnectionManager* connectionManagerAsync = connectionProvider.connectionPrepare(config.getIp(),config.getAsynchronousCommandsPort() + 1, ConnectionType(SERVER));
+    IConnectionManager* connectionManagerSync = connectionProvider.connectionPrepare(config.getIp(),config.getCommunicationPort(), ConnectionType(SERVER));
+    IConnectionManager* connectionManagerAsync = connectionProvider.connectionPrepare(config.getIp(),config.getAsynchronousCommandsPort(), ConnectionType(SERVER));
     RegexResolver regexResolver(config);
     Logger logger(false, "log.txt");
 
