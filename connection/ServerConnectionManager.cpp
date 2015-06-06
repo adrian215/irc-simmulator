@@ -65,16 +65,20 @@ std::string ServerConnectionManager::readMessage()
         perror("accept");
     else
     {
-        memset(buf, 0, sizeof buf);
-        if ((rval = read(msgsock,buf, 1024)) == -1)
+        int bufSize = sizeof buf;
+        char *tmpBufAddr = buf;
+        int bytesRead = 0;
+        memset(buf, 0, bufSize);
+
+        while(bytesRead < bufSize)
+        {
+            if ((rval = read(msgsock, tmpBufAddr + bytesRead, bufSize - bytesRead)) == -1)
                 perror("reading stream message");
-        else if (rval == 0)
-        {
-            throw NoReadersException();
+            else if (rval == 0)
+                throw NoReadersException();
+
+            bytesRead += rval;
         }
-        else
-        {
-            return buf;
-        }
+        return buf;
     }
 }

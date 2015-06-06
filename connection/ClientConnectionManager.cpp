@@ -4,7 +4,9 @@
 
 #include <string.h>
 #include <unistd.h>
+#include <iostream>
 #include "ClientConnectionManager.h"
+#include "NoReadersException.h"
 
 void ClientConnectionManager::openConnection() {
     sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,10 +55,21 @@ std::string ClientConnectionManager::readMessage()
         perror("accept");
     else
     {
-        memset(buf, 0, sizeof buf);
-        if ((read(sock,buf, 1024)) == -1)
-            perror("reading stream message");
-        else
-            return buf;
+        int bufSize = sizeof buf;
+        char *tmpBufAddr = buf;
+        int bytesRead = 0;
+        int rval;
+        memset(buf, 0, bufSize);
+
+        while (bytesRead < bufSize)
+        {
+            if ((rval = read(sock, tmpBufAddr + bytesRead, bufSize - bytesRead)) == -1)
+                perror("reading stream message");
+            else if (rval == 0)
+                throw NoReadersException();
+
+            bytesRead += rval;
+        }
+        return buf;
     }
 }

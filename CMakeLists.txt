@@ -46,4 +46,5 @@ connection/IConnectionManager.h
 connection/ClientConnectionManager.cpp
 connection/ClientConnectionManager.h
 connection/ServerConnectionManager.cpp
+connection/NoReadersException.h
 connection/ServerConnectionManager.h regex/RegexResolver.cpp regex/RegexResolver.h regex/CommandNotFoundException.h tranmission/TransmissionService.cpp tranmission/TransmissionService.h tranmission/ICommunicationService.cpp)
